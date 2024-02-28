@@ -1,107 +1,152 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:instagram/core/constants/color_constants.dart';
 import 'package:instagram/core/constants/image_constants.dart';
 import 'package:instagram/global_widgets/global_widgets.dart';
+import 'package:instagram/view/bottom_nav_screen/bottom_nav_screen.dart';
+import 'package:instagram/view/home_screen/home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController nameController = TextEditingController();
+  
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
+      extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+            ),
+
+
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-          
-             mainAxisSize: MainAxisSize.min,
-          
-            children: [
-              
-              Image.asset(ImageConstants.instaLogoPng),
-              SizedBox(height: 39,),
-              TextField(
+          child: SingleChildScrollView(
+            child: Column(
+            
+               mainAxisSize: MainAxisSize.min,
+            
+              children: [
                 
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 11.5,horizontal: 15),
-              filled: true,
-                hintText: "Phone number,email or username",
-                labelStyle: TextStyle(color: ColorConstants.primaryBlack),
-                hintStyle: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.2)),
-                border: OutlineInputBorder(
-                  
-                  borderSide: BorderSide.none,
-                )
-          
-              ),)
-              ,SizedBox(height: 12,),
-               TextField(
-          
-                decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 11.5,horizontal: 15),
-          
-              filled: true,
-                hintText: "Password",
-                
-                labelStyle: TextStyle(color: ColorConstants.primaryBlack),
-                                hintStyle: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.2)),
+                Image.asset(ImageConstants.instaLogoPng),
+                SizedBox(height: 39,),
+                TextField(
 
-                border: OutlineInputBorder(
+                  controller: nameController,
+
+                  onChanged: (value) {
+                    setState(() {
+                      
+                    });
+                  },
+
+                  onTap: () {
+                    
+
+                    FocusScope.of(context).unfocus();   ///for clicking outside keyboard down
+                  },
                   
-                  borderSide: BorderSide.none,
-                )
-          
-              ),),
-              SizedBox(height: 19,),
-          
-              Container(
-                alignment: Alignment.centerRight,
-                
-                child: Text("Forgot password?",style: TextStyle(color: ColorConstants.primaryBlue),),
-              ),SizedBox(height: 30,),
-              CustomButton(buttonColor: ColorConstants.primaryBlue, havVBorder: false, text: "Log in"),SizedBox(height: 37,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(ImageConstants.facebookLogo,),SizedBox(width: 10,),
-                  Text("Log in With Facebook",style: TextStyle(color: ColorConstants.primaryBlue,fontSize: 14,fontWeight: FontWeight.bold),),
-                ],
-              ),
-              SizedBox(height: 41.5,),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 8,right: 30),
-                      child: Divider(
-                        height: 36,
-                      ),
-                    ),
-                  ),
-                  Text("OR",style: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.4)),),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(left:30,right: 8),
-                      child: Divider(
-                        height: 36,
-                      ),
-                    ),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: 11.5,horizontal: 15),
+                    fillColor: ColorConstants.lightGrey,
+                filled: true,
+                  hintText: "Phone number,email or username",
+                  labelStyle: TextStyle(color: ColorConstants.primaryBlack),
+                  hintStyle: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.2)),
+                  border: OutlineInputBorder(
+                    
+                    borderSide: BorderSide(color: ColorConstants.primaryBlack.withOpacity(.4))
                   )
-                ],
-              ),
-              SizedBox(height: 41.5,),
-              Container(
-           child:RichText(textAlign: TextAlign.center,text: TextSpan(text: "Dont you have an account? ",
-          style: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.4)),
-          children: [TextSpan(text: "Sign Up",style: TextStyle(color: ColorConstants.primaryBlue,fontWeight: FontWeight.bold))]
-          ))
+            
+                ),)
+                ,SizedBox(height: 12,),
+                 TextField(
+                  controller: passwordController,
+                  onChanged: (value) {
+                    setState(() {
+                      
+                    });
+                  },
+                 obscureText: true,
+                  decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 11.5,horizontal: 15),
+             fillColor: ColorConstants.lightGrey,
+                filled: true,
+                  hintText: "Password",
+                  
+                  labelStyle: TextStyle(color: ColorConstants.primaryBlack),
+                                  hintStyle: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.2)),
+            
+                  border: OutlineInputBorder(
+                    
+                    borderSide: BorderSide(color: ColorConstants.primaryBlack.withOpacity(.4))
+                  )
+            
+                ),),
+                SizedBox(height: 19,),
+            
+                Container(
+                  alignment: Alignment.centerRight,
+                  
+                  child: Text("Forgot password?",style: TextStyle(color: ColorConstants.primaryBlue),),
+                ),SizedBox(height: 30,),
+                CustomButton(
+                  
+                  buttonColor:nameController.text.isNotEmpty && passwordController.text.isNotEmpty?
+                  
+                   ColorConstants.primaryBlue:ColorConstants.primaryBlue.withOpacity(.4), havVBorder: false, text: "Log in",
+                
+                onTap: () {
+                  
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomNavScreen(),), (route) => false);
+                },
+                ),SizedBox(height: 37,
                 ),
-          
-          
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(ImageConstants.facebookLogoPng,),SizedBox(width: 10,),
+                    Text("Log in With Facebook",style: TextStyle(color: ColorConstants.primaryBlue,fontSize: 14,fontWeight: FontWeight.bold),),
+                  ],
+                ),
+                SizedBox(height: 41.5,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                       
+                        endIndent: 30,
+                      ),
+                    ),
+                    Text("OR",style: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.4)),),
+                    Expanded(
+                      child: Divider(
+                        indent: 30,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 41.5,),
+                Container(
+             child:RichText(textAlign: TextAlign.center,text: TextSpan(text: "Dont you have an account? ",
+            style: TextStyle(color: ColorConstants.primaryBlack.withOpacity(.4)),
+            children: [TextSpan(text: "Sign Up",style: TextStyle(color: ColorConstants.primaryBlue,fontWeight: FontWeight.bold))]
+            ))
+                  ),
+            
+            
+              ],
+            ),
           ),
         ),
       ),

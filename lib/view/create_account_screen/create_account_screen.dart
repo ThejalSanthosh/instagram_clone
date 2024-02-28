@@ -19,13 +19,13 @@ class CreateAccountScreen extends StatelessWidget {
               children: [
                 
                 Image.asset(ImageConstants.instaLogoPng),SizedBox(height: 52,),
-                CircleAvatar(radius: 40,backgroundImage: AssetImage(ImageConstants.proPic),),SizedBox(height: 12,),
+                CircleAvatar(radius: 40,backgroundImage: AssetImage(ImageConstants.proPicJpg),),SizedBox(height: 12,),
                 Text("Thejal Santhosh",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),),SizedBox(height: 12,),
 
                CustomButton(buttonColor: ColorConstants.primaryBlue, havVBorder:false, text: "Log in",
                onTap: () {
                  
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
 
                },
                ) 

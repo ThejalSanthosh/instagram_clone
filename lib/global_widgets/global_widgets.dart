@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:instagram/core/constants/color_constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.buttonColor, required this.havVBorder, required this.text, this.onTap});
+  const CustomButton({super.key,  this.buttonColor=ColorConstants.primaryBlue,  this.havVBorder=false, required this.text, this.onTap,  this.textColor=ColorConstants.primarWhite});
 
   final Color buttonColor;
   final bool havVBorder;
   final String text;
+  final Color textColor;
   final void Function()? onTap;
 
   @override
@@ -24,7 +25,7 @@ class CustomButton extends StatelessWidget {
         
       ),
       
-      child: Center(child: Text(text,style: TextStyle(color: ColorConstants.primarWhite,fontSize: 14,fontWeight: FontWeight.w500),)),
+      child: Center(child: Text(text,style: TextStyle(color: textColor,fontSize: 14,fontWeight: FontWeight.w500),)),
       
       ),
     );
