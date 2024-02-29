@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/core/constants/image_constants.dart';
+import 'package:instagram/dummy_db.dart';
+import 'package:instagram/view/home_screen/widgets/custom_story_avatar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +31,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     children: [
 
-    //  ListView.separated(itemBuilder: itemBuilder, separatorBuilder: separatorBuilder, itemCount: itemCount)
+     SingleChildScrollView(
+     
+      scrollDirection: Axis.horizontal,
+       child: Row(
+       
+        children: 
+       
+          List.generate(DummyDb.storyList.length, (index) => CustomStoryAvatar(userName: DummyDb.storyList[index]["userName"], proPic: DummyDb.storyList[index]["proPic"],isLive: DummyDb.storyList[index]["isLive"],))
+        ,
+       ),
+     )
 
     ],
    ),
