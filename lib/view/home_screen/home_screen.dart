@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:instagram/core/constants/image_constants.dart';
 import 'package:instagram/dummy_db.dart';
 import 'package:instagram/view/home_screen/widgets/custom_story_avatar.dart';
@@ -48,7 +49,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   border: Border.all(width: .10),
                   borderRadius: BorderRadius.circular(5)),
             ),
-            CustomUserPostWidget()
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: DummyDb.postListImages.length,
+              itemBuilder: (context, index) => CustomUserPostWidget(
+                proPic: DummyDb.postListImages[index]["profilepic"],
+                userName: DummyDb.postListImages[index]["userName"],
+                place: DummyDb.postListImages[index]["place"],
+                image: DummyDb.postListImages[index]["image"],
+                isLIked: DummyDb.postListImages[index]["isLiked"],
+                caption: DummyDb.postListImages[index]["caption"],
+              ),
+            )
           ],
         ),
       ),

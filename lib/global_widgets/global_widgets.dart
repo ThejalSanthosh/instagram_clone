@@ -23,6 +23,7 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         border: havVBorder==true?Border.all(color: ColorConstants.primaryBlack.withOpacity(.4)):null,
         
+        
       ),
       
       child: Center(child: Text(text,style: TextStyle(color: textColor,fontSize: 14,fontWeight: FontWeight.w500),)),

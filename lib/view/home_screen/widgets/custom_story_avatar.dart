@@ -80,7 +80,7 @@ class CustomStoryAvatar extends StatelessWidget {
             ],
           ),
           SizedBox(height: 3),
-          // #2
+          
           Text(userName)
         ],
       ),
