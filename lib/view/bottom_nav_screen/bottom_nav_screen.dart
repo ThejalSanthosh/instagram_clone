@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram/view/create_post_screen/create_post_screen.dart';
 import 'package:instagram/view/create_account_screen/create_account_screen.dart';
 import 'package:instagram/view/home_screen/home_screen.dart';
+import 'package:instagram/view/notification_screen/notification_screen.dart';
 import 'package:instagram/view/profile_screen/profile_screen.dart';
 import 'package:instagram/view/search_screen/search_screen.dart';
 
@@ -21,9 +22,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     Container(
       color: Colors.green,
     ),
-    Container(
-      color: Colors.black,
-    ),
+    NotificationScreen(),
     ProfileScreen(),
   ];
 
